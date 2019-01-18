@@ -12,6 +12,8 @@ import RealmSwift
 class Contact: Object {
     @objc dynamic var name = ""
     @objc dynamic var phone = ""
+    @objc dynamic var isFavorited = false
+
 
 }
 

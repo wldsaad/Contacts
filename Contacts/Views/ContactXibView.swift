@@ -11,6 +11,8 @@ import UIKit
 class ContactXibView: UIView {
 
     @IBOutlet weak var nameLabel: UILabel!
-   
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var favoritebutton: UIButton!
+    
 
 }

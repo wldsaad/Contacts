@@ -25,7 +25,6 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         clearSearchbarBackground()
         getContacts()
         
-        debugPrint(realm.configuration.fileURL)
     }
 
     private func clearSearchbarBackground(){
@@ -131,6 +130,21 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
             
         }
     }
+    
+    private func callContact(indexPath: IndexPath) {
+        let number = contacts?[indexPath.section].contacts[indexPath.row].phone
+        if let url = URL(string: "tel://\(number!)"),
+            UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler:nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+            self.contactsTableView.reloadData()
+        } else {
+            debugPrint("ERROR")
+        }
+    }
 
 }
 
@@ -141,16 +155,13 @@ extension ContactsVC: UITableViewDataSource {
         
         
         let callAction = SwipeAction(style: SwipeActionStyle.default, title: "Call") { action, indexPath in
-            // handle action by updating model with deletion
-            debugPrint("Called")
+            self.callContact(indexPath: indexPath)
         }
         let moreAction = SwipeAction(style: SwipeActionStyle.default, title: "More") { action, indexPath in
             // handle action by updating model with deletion
-            debugPrint("More")
         }
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             self.deleteContact(indexPath: indexPath)
-            debugPrint("Deleted")
         }
         
         // customize the action appearance
@@ -167,10 +178,19 @@ extension ContactsVC: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = contactsTableView.dequeueReusableCell(withIdentifier: "contactCell") as! SwipeTableViewCell
-        cell.delegate = self
-        cell.textLabel?.text = contacts?[indexPath.section].contacts[indexPath.row].name
-        return cell
+        if let cell = contactsTableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
+            cell.delegate = self
+            cell.updateViews(contact: contacts?[indexPath.section].contacts[indexPath.row] ?? Contact())
+            cell.contactsVC = self
+            return cell
+        }
+        return ContactCell()
+    }
+    
+    func handleFav(cell: ContactCell){
+        let indexPath = contactsTableView.indexPath(for: cell)
+        debugPrint(indexPath?.section, indexPath?.row)
+//        debugPrint(accView.value(forKey: "section"))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
