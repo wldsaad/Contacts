@@ -24,6 +24,8 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         
         clearSearchbarBackground()
         getContacts()
+        
+        debugPrint(realm.configuration.fileURL)
     }
 
     private func clearSearchbarBackground(){
@@ -41,6 +43,9 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         contacts = realm.objects(ContactsSection.self).sorted(byKeyPath: "letter")
     }
     
+    @IBAction func addContactButtonPressed(_ sender: UIBarButtonItem) {
+        showAddAlert()
+    }
     
     private func showAddAlert(){
         let addAlert = UIAlertController(title: "Add contact", message: "", preferredStyle: .alert)
@@ -52,7 +57,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         }
         addAlert.addTextField { (phoneField) in
             phoneField.placeholder = "Phone"
-            nameTextField = phoneField
+            phoneTextField = phoneField
         }
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             guard let name = nameTextField.text, let phone = phoneTextField.text else {
@@ -62,7 +67,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
                 self.saveContact(name: name, phone: phone)
             }
         }
-        let cancelAction = UIAlertAction(title: "Add", style: .cancel) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             addAlert.dismiss(animated: true, completion: nil)
         }
         addAlert.addAction(addAction)
@@ -71,7 +76,42 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     }
     
     private func saveContact(name: String, phone: String) {
-        
+        let section = realm.objects(ContactsSection.self).filter("letter CONTAINS [cd] %@", String(name.first!))
+        let contact = Contact()
+        contact.name = name
+        contact.phone = phone
+        if section.count == 0 {
+            do {
+                try realm.write {
+                    let newSection = ContactsSection()
+                    newSection.letter = String(name.first!).capitalized
+                    newSection.isExpanded = true
+                    newSection.contacts.append(contact)
+                    realm.add(newSection)
+                    DispatchQueue.main.async {
+                        self.contactsTableView.reloadData()
+                    }
+                }
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
+        } else {
+            
+            do {
+                try realm.write {
+                    let oldContacts = section[0].contacts
+                    oldContacts.append(contact)
+                    section[0].contacts = oldContacts
+                    realm.add(section)
+                    DispatchQueue.main.async {
+                        self.contactsTableView.reloadData()
+                    }
+                }
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
+            
+        }
     }
 
 }
@@ -173,7 +213,6 @@ extension ContactsVC: UITableViewDelegate  {
         } else {
             contactsTableView.insertRows(at: indexPathes, with: .fade)
         }
-        debugPrint(indexPathes)
     }
     
 }
