@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class MyGradientView: UIView {
     
     @IBInspectable var startColor: UIColor = UIColor.yellow {
@@ -38,15 +39,46 @@ class MyGradientView: UIView {
         }
     }
 
-    let gradient = CAGradientLayer()
+    @IBInspectable var cornerRadius: CGFloat = 0.0 {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    @IBInspectable var shadowColor: UIColor = UIColor.gray {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    @IBInspectable var shadowOffset: CGSize = CGSize(width: 0, height: 0) {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    @IBInspectable var shadowRadius: CGFloat = 0.0 {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    @IBInspectable var shadowOpacity: Float = 0.0 {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
+    let gradientLayer = CAGradientLayer()
 
         override func layoutSubviews() {
             super.layoutSubviews()
-            gradient.frame = bounds
-            gradient.colors = [startColor.cgColor, endColor.cgColor]
-            gradient.startPoint = startPoint
-            gradient.endPoint = endPoint
-            layer.insertSublayer(gradient, at: 0)
+            gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
+            gradientLayer.startPoint = startPoint
+            gradientLayer.endPoint = endPoint
+            layer.cornerRadius = cornerRadius
+            layer.shadowColor = shadowColor.cgColor
+            layer.shadowOffset = shadowOffset
+            layer.shadowRadius = shadowRadius
+            layer.shadowOpacity = shadowOpacity
+            gradientLayer.frame = bounds
+            layer.insertSublayer(gradientLayer, at: 0)
         }
 
 }
