@@ -42,8 +42,37 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     }
     
     
+    private func showAddAlert(){
+        let addAlert = UIAlertController(title: "Add contact", message: "", preferredStyle: .alert)
+        var nameTextField = UITextField()
+        var phoneTextField = UITextField()
+        addAlert.addTextField { (nameField) in
+            nameField.placeholder = "Name"
+            nameTextField = nameField
+        }
+        addAlert.addTextField { (phoneField) in
+            phoneField.placeholder = "Phone"
+            nameTextField = phoneField
+        }
+        let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            guard let name = nameTextField.text, let phone = phoneTextField.text else {
+                return
+            }
+            if name.count > 0 , phone.count > 0 {
+                self.saveContact(name: name, phone: phone)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Add", style: .cancel) { (action) in
+            addAlert.dismiss(animated: true, completion: nil)
+        }
+        addAlert.addAction(addAction)
+        addAlert.addAction(cancelAction)
+        present(addAlert, animated: true, completion: nil)
+    }
     
-    
+    private func saveContact(name: String, phone: String) {
+        
+    }
 
 }
 
