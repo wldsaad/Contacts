@@ -14,7 +14,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     @IBOutlet weak var contactsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    let contacts = [
+    var contacts = [
         ContactsSection(letter: "W", isExpanded: true, contacts: [
             Contact(name: "Waleed"),
             Contact(name: "Willo"),
@@ -25,7 +25,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
             Contact(name: "Ahmoda"),
             Contact(name: "Abo Hemaid")
             ]),
-        ContactsSection(letter: "W", isExpanded: true, contacts: [
+        ContactsSection(letter: "M", isExpanded: true, contacts: [
             Contact(name: "Mohamed"),
             Contact(name: "Mido"),
             Contact(name: "Momo")
@@ -94,6 +94,9 @@ extension ContactsVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if !contacts[section].isExpanded {
+            return 0
+        }
         return contacts[section].contacts.count
     }
     
@@ -130,7 +133,19 @@ extension ContactsVC: UITableViewDelegate  {
     }
     
     @objc private func handleExpandtoggle(sender: UIButton) {
-        debugPrint(sender.tag)
+        let section = sender.tag
+        var indexPathes = [IndexPath]()
+        for row in contacts[section].contacts.indices {
+            let indexPath = IndexPath(row: row, section: section)
+            indexPathes.append(indexPath)
+        }
+        contacts[section].isExpanded = !contacts[section].isExpanded
+        if !contacts[section].isExpanded {
+            contactsTableView.deleteRows(at: indexPathes, with: .fade)
+        } else {
+            contactsTableView.insertRows(at: indexPathes, with: .fade)
+        }
+        debugPrint(indexPathes)
     }
     
 }
