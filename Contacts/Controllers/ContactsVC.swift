@@ -8,35 +8,22 @@
 
 import UIKit
 import SwipeCellKit
+import RealmSwift
 
 class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     
     @IBOutlet weak var contactsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var contacts = [
-        ContactsSection(letter: "W", isExpanded: true, contacts: [
-            Contact(name: "Waleed"),
-            Contact(name: "Willo"),
-            Contact(name: "Weka")
-            ]),
-        ContactsSection(letter: "A", isExpanded: true, contacts: [
-            Contact(name: "Ahmed"),
-            Contact(name: "Ahmoda"),
-            Contact(name: "Abo Hemaid")
-            ]),
-        ContactsSection(letter: "M", isExpanded: true, contacts: [
-            Contact(name: "Mohamed"),
-            Contact(name: "Mido"),
-            Contact(name: "Momo")
-            ])
-    ]
+    private let realm = try! Realm()
+    
+    private var contacts: Results<ContactsSection>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         clearSearchbarBackground()
-
+        getContacts()
     }
 
     private func clearSearchbarBackground(){
@@ -49,6 +36,18 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         searchBar.setImage(UIImage(named: "icon_search"), for: UISearchBar.Icon.search, state: .normal)
 
     }
+    
+    private func getContacts(){
+        contacts = realm.objects(ContactsSection.self).sorted(byKeyPath: "letter")
+    }
+    
+    
+    
+    
+
+}
+
+extension ContactsVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
@@ -77,27 +76,21 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         
         return [callAction, deleteAction, moreAction]
     }
-    
-    
-    
-    
-    
 
-}
-
-extension ContactsVC: UITableViewDataSource {
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = contactsTableView.dequeueReusableCell(withIdentifier: "contactCell") as! SwipeTableViewCell
         cell.delegate = self
-        cell.textLabel?.text = contacts[indexPath.section].contacts[indexPath.row].name
+        cell.textLabel?.text = contacts?[indexPath.section].contacts[indexPath.row].name
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !contacts[section].isExpanded {
+        if !(contacts?[section].isExpanded)! {
             return 0
         }
-        return contacts[section].contacts.count
+        return (contacts?[section].contacts.count)!
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
@@ -115,12 +108,12 @@ extension ContactsVC: UITableViewDataSource {
 extension ContactsVC: UITableViewDelegate  {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return contacts.count
+        return contacts?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let capitalLetterView = Bundle.main.loadNibNamed("ContactHeaderXib", owner: self, options: nil)?.first as? ContactHeaderXibView {
-            capitalLetterView.letterLabel.text = contacts[section].letter
+            capitalLetterView.letterLabel.text = contacts?[section].letter
             capitalLetterView.expandButton.tag = section
             capitalLetterView.expandButton.addTarget(self, action: #selector(handleExpandtoggle(sender:)), for: .touchUpInside)
             return capitalLetterView
@@ -135,12 +128,18 @@ extension ContactsVC: UITableViewDelegate  {
     @objc private func handleExpandtoggle(sender: UIButton) {
         let section = sender.tag
         var indexPathes = [IndexPath]()
-        for row in contacts[section].contacts.indices {
+        for row in (contacts?[section].contacts.indices)! {
             let indexPath = IndexPath(row: row, section: section)
             indexPathes.append(indexPath)
         }
-        contacts[section].isExpanded = !contacts[section].isExpanded
-        if !contacts[section].isExpanded {
+        do {
+            try realm.write {
+                contacts?[section].isExpanded = !contacts![section].isExpanded
+            }
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+        if !(contacts?[section].isExpanded)! {
             contactsTableView.deleteRows(at: indexPathes, with: .fade)
         } else {
             contactsTableView.insertRows(at: indexPathes, with: .fade)

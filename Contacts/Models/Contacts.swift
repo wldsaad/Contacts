@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct Contact {
-    var name: String
-    
+class Contact: Object {
+    @objc dynamic var name = ""
+    @objc dynamic var phone = ""
+
 }
 
-struct ContactsSection {
-    var letter: String
-    var isExpanded: Bool
-    var contacts: [Contact]
+class ContactsSection: Object {
+    @objc dynamic var letter = ""
+    @objc dynamic var isExpanded = true
+    var contacts = List<Contact>()
 }

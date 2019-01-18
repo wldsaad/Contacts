@@ -6,6 +6,6 @@ target 'Contacts' do
 
   # Pods for Contacts
 pod 'SwipeCellKit'
-
+pod 'RealmSwift'
 
 end
