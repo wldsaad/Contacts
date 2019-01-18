@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A84919221F1C297005E8FA2 /* MyGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84919121F1C297005E8FA2 /* MyGradientView.swift */; };
 		9A856F8421F1AA91008E8392 /* MyGradientNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A856F8321F1AA91008E8392 /* MyGradientNavigationController.swift */; };
 		9A9E177C21F12F8F00ADCC24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E177B21F12F8F00ADCC24 /* AppDelegate.swift */; };
 		9A9E177E21F12F8F00ADCC24 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E177D21F12F8F00ADCC24 /* ContactsVC.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		08BEDBD090085BCA2C86705B /* Pods_Contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6965B3E167C0E0E06AD9FE82 /* Pods-Contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Contacts/Pods-Contacts.debug.xcconfig"; sourceTree = "<group>"; };
+		9A84919121F1C297005E8FA2 /* MyGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGradientView.swift; sourceTree = "<group>"; };
 		9A856F8321F1AA91008E8392 /* MyGradientNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGradientNavigationController.swift; sourceTree = "<group>"; };
 		9A9E177821F12F8F00ADCC24 /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9E177B21F12F8F00ADCC24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,10 +53,47 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9A856F8021F1A890008E8392 /* Utils */ = {
+		9A84919521F1CA72005E8FA2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				9A856F8321F1AA91008E8392 /* MyGradientNavigationController.swift */,
+				9A84919121F1C297005E8FA2 /* MyGradientView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9A84919621F1CAAA005E8FA2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9A84919721F1CAB0005E8FA2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A9E177D21F12F8F00ADCC24 /* ContactsVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9A84919821F1CAC4005E8FA2 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		9A84919921F1CACC005E8FA2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9A856F8021F1A890008E8392 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -80,10 +119,14 @@
 		9A9E177A21F12F8F00ADCC24 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				9A9E177F21F12F8F00ADCC24 /* Main.storyboard */,
+				9A84919721F1CAB0005E8FA2 /* Controllers */,
+				9A84919921F1CACC005E8FA2 /* Cells */,
+				9A84919821F1CAC4005E8FA2 /* Xibs */,
+				9A84919621F1CAAA005E8FA2 /* Models */,
+				9A84919521F1CA72005E8FA2 /* Views */,
 				9A856F8021F1A890008E8392 /* Utils */,
 				9A9E177B21F12F8F00ADCC24 /* AppDelegate.swift */,
-				9A9E177D21F12F8F00ADCC24 /* ContactsVC.swift */,
-				9A9E177F21F12F8F00ADCC24 /* Main.storyboard */,
 				9A9E178221F12F9000ADCC24 /* Assets.xcassets */,
 				9A9E178421F12F9000ADCC24 /* LaunchScreen.storyboard */,
 				9A9E178721F12F9000ADCC24 /* Info.plist */,
@@ -221,6 +264,7 @@
 			files = (
 				9A9E177E21F12F8F00ADCC24 /* ContactsVC.swift in Sources */,
 				9A856F8421F1AA91008E8392 /* MyGradientNavigationController.swift in Sources */,
+				9A84919221F1C297005E8FA2 /* MyGradientView.swift in Sources */,
 				9A9E177C21F12F8F00ADCC24 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
