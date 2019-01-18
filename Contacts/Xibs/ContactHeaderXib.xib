@@ -32,7 +32,7 @@
                                 <constraint firstAttribute="height" constant="40" id="HqA-Mt-YSl"/>
                             </constraints>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" image="down_arrow"/>
+                            <state key="normal" image="up_arrow"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -72,6 +72,6 @@
         </view>
     </objects>
     <resources>
-        <image name="down_arrow" width="512" height="512"/>
+        <image name="up_arrow" width="512" height="512"/>
     </resources>
 </document>

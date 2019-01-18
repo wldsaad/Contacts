@@ -113,6 +113,24 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
             
         }
     }
+    
+    private func deleteContact(indexPath: IndexPath){
+        do {
+            try realm.write {
+                realm.delete(contacts![indexPath.section].contacts[indexPath.row])
+                if let newContacts = contacts?[indexPath.section].contacts {
+                    if newContacts.count == 0 {
+                        realm.delete(contacts![indexPath.section])
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.contactsTableView.reloadData()
+                }
+            }
+        } catch {
+            
+        }
+    }
 
 }
 
@@ -131,7 +149,7 @@ extension ContactsVC: UITableViewDataSource {
             debugPrint("More")
         }
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            // handle action by updating model with deletion
+            self.deleteContact(indexPath: indexPath)
             debugPrint("Deleted")
         }
         
@@ -185,6 +203,7 @@ extension ContactsVC: UITableViewDelegate  {
             capitalLetterView.letterLabel.text = contacts?[section].letter
             capitalLetterView.expandButton.tag = section
             capitalLetterView.expandButton.addTarget(self, action: #selector(handleExpandtoggle(sender:)), for: .touchUpInside)
+            capitalLetterView.expandButton.imageView?.image = (contacts?[section].isExpanded)! ? UIImage(named: "up_arrow") : UIImage(named: "down_arrow")
             return capitalLetterView
         }
         return ContactHeaderXibView()
@@ -213,6 +232,7 @@ extension ContactsVC: UITableViewDelegate  {
         } else {
             contactsTableView.insertRows(at: indexPathes, with: .fade)
         }
+        contactsTableView.reloadSections(IndexSet(arrayLiteral: section), with: .none)
     }
     
 }

@@ -28,7 +28,7 @@
                                             <constraint firstAttribute="height" constant="56" id="DUo-MF-pLj"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
                                                 <color key="value" red="0.23921568630000001" green="0.12941176469999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,6 +43,9 @@
                                                 <point key="value" x="-0.5" y="0.5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="qr7-fI-TiV"/>
+                                        </connections>
                                     </searchBar>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHg-yq-9r9">
                                         <rect key="frame" x="0.0" y="64" width="375" height="771"/>
