@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		9A84919221F1C297005E8FA2 /* MyGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84919121F1C297005E8FA2 /* MyGradientView.swift */; };
+		9A84919B21F1D62E005E8FA2 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84919A21F1D62E005E8FA2 /* ContactCell.swift */; };
+		9A84919D21F1D640005E8FA2 /* ContactXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A84919C21F1D640005E8FA2 /* ContactXib.xib */; };
+		9A84919F21F1D65F005E8FA2 /* ContactXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84919E21F1D65F005E8FA2 /* ContactXibView.swift */; };
+		9A8491A121F1E96B005E8FA2 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8491A021F1E96B005E8FA2 /* Contacts.swift */; };
+		9A8491A321F1EA01005E8FA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8491A221F1EA01005E8FA2 /* Constants.swift */; };
+		9A8491A521F1F091005E8FA2 /* ContactHeaderXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8491A421F1F091005E8FA2 /* ContactHeaderXib.xib */; };
+		9A8491A721F1F25D005E8FA2 /* ContactHeaderXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8491A621F1F25D005E8FA2 /* ContactHeaderXibView.swift */; };
 		9A856F8421F1AA91008E8392 /* MyGradientNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A856F8321F1AA91008E8392 /* MyGradientNavigationController.swift */; };
 		9A9E177C21F12F8F00ADCC24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E177B21F12F8F00ADCC24 /* AppDelegate.swift */; };
 		9A9E177E21F12F8F00ADCC24 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E177D21F12F8F00ADCC24 /* ContactsVC.swift */; };
@@ -21,6 +28,13 @@
 		08BEDBD090085BCA2C86705B /* Pods_Contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6965B3E167C0E0E06AD9FE82 /* Pods-Contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Contacts/Pods-Contacts.debug.xcconfig"; sourceTree = "<group>"; };
 		9A84919121F1C297005E8FA2 /* MyGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGradientView.swift; sourceTree = "<group>"; };
+		9A84919A21F1D62E005E8FA2 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		9A84919C21F1D640005E8FA2 /* ContactXib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactXib.xib; sourceTree = "<group>"; };
+		9A84919E21F1D65F005E8FA2 /* ContactXibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactXibView.swift; sourceTree = "<group>"; };
+		9A8491A021F1E96B005E8FA2 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		9A8491A221F1EA01005E8FA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9A8491A421F1F091005E8FA2 /* ContactHeaderXib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactHeaderXib.xib; sourceTree = "<group>"; };
+		9A8491A621F1F25D005E8FA2 /* ContactHeaderXibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHeaderXibView.swift; sourceTree = "<group>"; };
 		9A856F8321F1AA91008E8392 /* MyGradientNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGradientNavigationController.swift; sourceTree = "<group>"; };
 		9A9E177821F12F8F00ADCC24 /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9E177B21F12F8F00ADCC24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +72,8 @@
 			children = (
 				9A856F8321F1AA91008E8392 /* MyGradientNavigationController.swift */,
 				9A84919121F1C297005E8FA2 /* MyGradientView.swift */,
+				9A84919E21F1D65F005E8FA2 /* ContactXibView.swift */,
+				9A8491A621F1F25D005E8FA2 /* ContactHeaderXibView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -65,6 +81,7 @@
 		9A84919621F1CAAA005E8FA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9A8491A021F1E96B005E8FA2 /* Contacts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -80,6 +97,8 @@
 		9A84919821F1CAC4005E8FA2 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				9A84919C21F1D640005E8FA2 /* ContactXib.xib */,
+				9A8491A421F1F091005E8FA2 /* ContactHeaderXib.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -87,6 +106,7 @@
 		9A84919921F1CACC005E8FA2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9A84919A21F1D62E005E8FA2 /* ContactCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -94,6 +114,7 @@
 		9A856F8021F1A890008E8392 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9A8491A221F1EA01005E8FA2 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -202,8 +223,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8491A521F1F091005E8FA2 /* ContactHeaderXib.xib in Resources */,
 				9A9E178621F12F9000ADCC24 /* LaunchScreen.storyboard in Resources */,
 				9A9E178321F12F9000ADCC24 /* Assets.xcassets in Resources */,
+				9A84919D21F1D640005E8FA2 /* ContactXib.xib in Resources */,
 				9A9E178121F12F8F00ADCC24 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,10 +285,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A84919B21F1D62E005E8FA2 /* ContactCell.swift in Sources */,
 				9A9E177E21F12F8F00ADCC24 /* ContactsVC.swift in Sources */,
 				9A856F8421F1AA91008E8392 /* MyGradientNavigationController.swift in Sources */,
+				9A84919F21F1D65F005E8FA2 /* ContactXibView.swift in Sources */,
 				9A84919221F1C297005E8FA2 /* MyGradientView.swift in Sources */,
 				9A9E177C21F12F8F00ADCC24 /* AppDelegate.swift in Sources */,
+				9A8491A721F1F25D005E8FA2 /* ContactHeaderXibView.swift in Sources */,
+				9A8491A121F1E96B005E8FA2 /* Contacts.swift in Sources */,
+				9A8491A321F1EA01005E8FA2 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
