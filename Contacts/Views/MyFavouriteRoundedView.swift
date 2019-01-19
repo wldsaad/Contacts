@@ -9,7 +9,6 @@
 import UIKit
 import ChameleonFramework
 
-@IBDesignable
 class MyFavouriteRoundedView: UIView {
 
     @IBOutlet weak var favNameLabel: UILabel!

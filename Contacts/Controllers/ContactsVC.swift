@@ -12,6 +12,7 @@ import RealmSwift
 
 class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     
+    
     @IBOutlet weak var contactsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -24,10 +25,8 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         clearSearchbarBackground()
         getContacts()
-        debugPrint(realm.configuration.fileURL)
         getFavContacts()
     }
 
@@ -295,6 +294,6 @@ extension ContactsVC: UICollectionViewDataSource {
 
 extension ContactsVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 80, height: 80)
+        return CGSize(width: 70, height: 70)
     }
 }
