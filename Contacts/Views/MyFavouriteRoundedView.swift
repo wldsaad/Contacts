@@ -9,6 +9,7 @@
 import UIKit
 import ChameleonFramework
 
+@IBDesignable
 class MyFavouriteRoundedView: UIView {
 
     @IBOutlet weak var favNameLabel: UILabel!
@@ -16,7 +17,6 @@ class MyFavouriteRoundedView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = self.frame.size.width / 2
-        backgroundColor = RandomFlatColor()
         favNameLabel.textColor = UIColor(contrastingBlackOrWhiteColorOn: backgroundColor!, isFlat: true)
     }
 }

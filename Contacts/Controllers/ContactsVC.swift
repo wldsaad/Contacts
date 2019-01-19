@@ -9,7 +9,7 @@
 import UIKit
 import SwipeCellKit
 import RealmSwift
-
+import ChameleonFramework
 class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     
     
@@ -25,6 +25,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        debugPrint(realm.configuration.fileURL)
         clearSearchbarBackground()
         getContacts()
         getFavContacts()
@@ -86,6 +87,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         let contact = Contact()
         contact.name = name
         contact.phone = phone
+        contact.color = RandomFlatColor().hexValue()
         if section.count == 0 {
             do {
                 try realm.write {
@@ -131,6 +133,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
                 }
                 DispatchQueue.main.async {
                     self.contactsTableView.reloadData()
+                    self.favouritescollectionView.reloadData()
                 }
             }
         } catch {
@@ -295,5 +298,21 @@ extension ContactsVC: UICollectionViewDataSource {
 extension ContactsVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 70, height: 70)
+    }
+}
+
+extension ContactsVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if let searchedContactString = searchBar.text {
+            if searchedContactString.count == 0 {
+                self.getContacts()
+                self.contactsTableView.reloadData()
+            } else {
+                if let contactsSectionsArray: Results<ContactsSection> = realm.objects(ContactsSection.self).filter("letter == %@", String(searchedContactString.first!)) {
+                    self.contacts = contactsSectionsArray
+                    self.contactsTableView.reloadData()
+                }
+            }
+        }
     }
 }
