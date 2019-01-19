@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class MyGradientView: UIView {
     
     @IBInspectable var startColor: UIColor = UIColor.yellow {

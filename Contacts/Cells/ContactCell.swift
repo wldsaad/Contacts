@@ -32,6 +32,7 @@ class ContactCell: SwipeTableViewCell {
     func updateViews(contact: Contact){
         contactView?.nameLabel.text = contact.name
         contactView?.phoneLabel.text = contact.phone
+        contactView?.favoritebutton.imageView?.tintColor = contact.isFavorited ? .purple : .gray
     }
    
     @objc private func handleFav() {

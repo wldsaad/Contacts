@@ -24,7 +24,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         
         clearSearchbarBackground()
         getContacts()
-        
+        debugPrint(realm.configuration.fileURL)
     }
 
     private func clearSearchbarBackground(){
@@ -188,9 +188,21 @@ extension ContactsVC: UITableViewDataSource {
     }
     
     func handleFav(cell: ContactCell){
-        let indexPath = contactsTableView.indexPath(for: cell)
-        debugPrint(indexPath?.section, indexPath?.row)
-//        debugPrint(accView.value(forKey: "section"))
+        if let indexPath = contactsTableView.indexPath(for: cell) {
+            do {
+                try realm.write {
+                    contacts?[indexPath.section].contacts[indexPath.row].isFavorited = !(contacts?[indexPath.section].contacts[indexPath.row].isFavorited)!
+                    DispatchQueue.main.async {
+                        cell.updateViews(contact: (self.contacts?[indexPath.section].contacts[indexPath.row])!)
+                    }
+                }
+                
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
+            
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
