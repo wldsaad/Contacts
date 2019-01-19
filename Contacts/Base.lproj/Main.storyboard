@@ -62,18 +62,18 @@
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hft-Dc-DCL">
+                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hft-Dc-DCL">
                                                                 <rect key="frame" x="20" y="49" width="335" height="81"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="zEL-E9-SAA">
+                                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="4" minimumInteritemSpacing="0.0" id="zEL-E9-SAA">
                                                                     <size key="itemSize" width="50" height="50"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
-                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="31C-Tj-a7K">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favouriteCell" id="31C-Tj-a7K" customClass="FavouriteCell" customModule="Contacts" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="15.5" width="50" height="50"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -81,6 +81,10 @@
                                                                         </view>
                                                                     </collectionViewCell>
                                                                 </cells>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="68X-7L-PYC"/>
+                                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="qAL-k3-RIX"/>
+                                                                </connections>
                                                             </collectionView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -229,6 +233,7 @@
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="contactsTableView" destination="vQf-5Q-O7G" id="iWt-WB-QaY"/>
+                        <outlet property="favouritescollectionView" destination="Hft-Dc-DCL" id="vwr-4Y-lSn"/>
                         <outlet property="searchBar" destination="OXZ-Tq-TpI" id="HcI-OX-kUC"/>
                     </connections>
                 </viewController>

@@ -7,5 +7,6 @@ target 'Contacts' do
   # Pods for Contacts
 pod 'SwipeCellKit'
 pod 'RealmSwift'
+pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'wip/swift4'
 
 end

@@ -15,9 +15,12 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     @IBOutlet weak var contactsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var favouritescollectionView: UICollectionView!
+    
     private let realm = try! Realm()
     
     private var contacts: Results<ContactsSection>?
+    private var favContacts: Results<Contact>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         clearSearchbarBackground()
         getContacts()
         debugPrint(realm.configuration.fileURL)
+        getFavContacts()
     }
 
     private func clearSearchbarBackground(){
@@ -40,6 +44,10 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
     
     private func getContacts(){
         contacts = realm.objects(ContactsSection.self).sorted(byKeyPath: "letter")
+    }
+    
+    private func getFavContacts() {
+        favContacts = realm.objects(Contact.self).filter("isFavorited == %@", true).sorted(byKeyPath: "name")
     }
     
     @IBAction func addContactButtonPressed(_ sender: UIBarButtonItem) {
@@ -194,6 +202,7 @@ extension ContactsVC: UITableViewDataSource {
                     contacts?[indexPath.section].contacts[indexPath.row].isFavorited = !(contacts?[indexPath.section].contacts[indexPath.row].isFavorited)!
                     DispatchQueue.main.async {
                         cell.updateViews(contact: (self.contacts?[indexPath.section].contacts[indexPath.row])!)
+                        self.favouritescollectionView.reloadData()
                     }
                 }
                 
@@ -267,4 +276,25 @@ extension ContactsVC: UITableViewDelegate  {
         contactsTableView.reloadSections(IndexSet(arrayLiteral: section), with: .none)
     }
     
+}
+
+extension ContactsVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return favContacts?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = favouritescollectionView.dequeueReusableCell(withReuseIdentifier: "favouriteCell", for: indexPath) as? FavouriteCell {
+            cell.updateViews(contact: favContacts?[indexPath.row] ?? Contact())
+            return cell
+        }
+        
+        return FavouriteCell()
+    }
+}
+
+extension ContactsVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 80, height: 80)
+    }
 }

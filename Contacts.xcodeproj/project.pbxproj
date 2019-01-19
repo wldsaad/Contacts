@@ -21,6 +21,9 @@
 		9A9E178121F12F8F00ADCC24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A9E177F21F12F8F00ADCC24 /* Main.storyboard */; };
 		9A9E178321F12F9000ADCC24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A9E178221F12F9000ADCC24 /* Assets.xcassets */; };
 		9A9E178621F12F9000ADCC24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A9E178421F12F9000ADCC24 /* LaunchScreen.storyboard */; };
+		9AAB807821F2F2C2007F1754 /* FavouriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB807721F2F2C2007F1754 /* FavouriteCell.swift */; };
+		9AAB807A21F2F2E6007F1754 /* FavouriteXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AAB807921F2F2E6007F1754 /* FavouriteXib.xib */; };
+		9AAB807C21F2F37C007F1754 /* MyFavouriteRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB807B21F2F37C007F1754 /* MyFavouriteRoundedView.swift */; };
 		9D60696766E85C15F6C23E06 /* Pods_Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BEDBD090085BCA2C86705B /* Pods_Contacts.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,9 @@
 		9A9E178221F12F9000ADCC24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A9E178521F12F9000ADCC24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A9E178721F12F9000ADCC24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AAB807721F2F2C2007F1754 /* FavouriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCell.swift; sourceTree = "<group>"; };
+		9AAB807921F2F2E6007F1754 /* FavouriteXib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteXib.xib; sourceTree = "<group>"; };
+		9AAB807B21F2F37C007F1754 /* MyFavouriteRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavouriteRoundedView.swift; sourceTree = "<group>"; };
 		E2000BA6D3003878B154B984 /* Pods-Contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts.release.xcconfig"; path = "Pods/Target Support Files/Pods-Contacts/Pods-Contacts.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +80,7 @@
 				9A84919121F1C297005E8FA2 /* MyGradientView.swift */,
 				9A84919E21F1D65F005E8FA2 /* ContactXibView.swift */,
 				9A8491A621F1F25D005E8FA2 /* ContactHeaderXibView.swift */,
+				9AAB807B21F2F37C007F1754 /* MyFavouriteRoundedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -99,6 +106,7 @@
 			children = (
 				9A84919C21F1D640005E8FA2 /* ContactXib.xib */,
 				9A8491A421F1F091005E8FA2 /* ContactHeaderXib.xib */,
+				9AAB807921F2F2E6007F1754 /* FavouriteXib.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -107,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				9A84919A21F1D62E005E8FA2 /* ContactCell.swift */,
+				9AAB807721F2F2C2007F1754 /* FavouriteCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -224,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8491A521F1F091005E8FA2 /* ContactHeaderXib.xib in Resources */,
+				9AAB807A21F2F2E6007F1754 /* FavouriteXib.xib in Resources */,
 				9A9E178621F12F9000ADCC24 /* LaunchScreen.storyboard in Resources */,
 				9A9E178321F12F9000ADCC24 /* Assets.xcassets in Resources */,
 				9A84919D21F1D640005E8FA2 /* ContactXib.xib in Resources */,
@@ -265,6 +275,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Contacts/Pods-Contacts-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
@@ -273,6 +284,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
@@ -294,6 +306,8 @@
 				9A856F8421F1AA91008E8392 /* MyGradientNavigationController.swift in Sources */,
 				9A84919F21F1D65F005E8FA2 /* ContactXibView.swift in Sources */,
 				9A84919221F1C297005E8FA2 /* MyGradientView.swift in Sources */,
+				9AAB807C21F2F37C007F1754 /* MyFavouriteRoundedView.swift in Sources */,
+				9AAB807821F2F2C2007F1754 /* FavouriteCell.swift in Sources */,
 				9A9E177C21F12F8F00ADCC24 /* AppDelegate.swift in Sources */,
 				9A8491A721F1F25D005E8FA2 /* ContactHeaderXibView.swift in Sources */,
 				9A8491A121F1E96B005E8FA2 /* Contacts.swift in Sources */,
