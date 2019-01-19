@@ -28,5 +28,6 @@ class FavouriteCell: UICollectionViewCell {
     func updateViews(contact: Contact){
         favView?.favNameLabel.text = contact.name
         favView?.backgroundColor = UIColor(hexString: contact.color)
+        favView?.favNameLabel.textColor = UIColor(contrastingBlackOrWhiteColorOn: (favView?.backgroundColor)!, isFlat: true)
     }
 }

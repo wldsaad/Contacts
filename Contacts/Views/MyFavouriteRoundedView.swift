@@ -17,6 +17,5 @@ class MyFavouriteRoundedView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = self.frame.size.width / 2
-        favNameLabel.textColor = UIColor(contrastingBlackOrWhiteColorOn: backgroundColor!, isFlat: true)
     }
 }

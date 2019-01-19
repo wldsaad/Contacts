@@ -303,6 +303,7 @@ extension ContactsVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension ContactsVC: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let searchedContactString = searchBar.text {
             if searchedContactString.count == 0 {
@@ -315,5 +316,21 @@ extension ContactsVC: UISearchBarDelegate {
                 }
             }
         }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        addCloseTapGesture()
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dismissKeyboard()
+    }
+    private func addCloseTapGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard(){
+        view.endEditing(true)
+        view.gestureRecognizers?.removeAll()
     }
 }
