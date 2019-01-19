@@ -65,6 +65,7 @@ class ContactsVC: UIViewController, SwipeTableViewCellDelegate {
         addAlert.addTextField { (phoneField) in
             phoneField.placeholder = "Phone"
             phoneTextField = phoneField
+            phoneTextField.keyboardType = .numberPad
         }
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             guard let name = nameTextField.text, let phone = phoneTextField.text else {
